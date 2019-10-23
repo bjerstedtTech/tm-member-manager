@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace TmMemberManager.Models
+namespace TmMemberManager.Services.Models
 {
     /// <summary>
     /// Roles that a member can perform at a meeting

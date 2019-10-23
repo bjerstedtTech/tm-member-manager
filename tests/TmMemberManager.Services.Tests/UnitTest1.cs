@@ -1,6 +1,6 @@
 using NUnit.Framework;
 
-namespace TmMemberManager.Models.Tests
+namespace TmMemberManager.Services.Models.Tests
 {
     public class Tests
     {

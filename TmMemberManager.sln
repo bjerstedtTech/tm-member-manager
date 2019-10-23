@@ -5,11 +5,11 @@ VisualStudioVersion = 15.0.26124.0
 MinimumVisualStudioVersion = 15.0.26124.0
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{A43E922C-1780-4D9B-B87E-7BE85DEC9252}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmMemberManager.Models", "src\TmMemberManager.Models\TmMemberManager.Models.csproj", "{27E6B9CB-CD3A-4F40-9F65-256AA9720E3F}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmMemberManager.Services", "src\TmMemberManager.Services\TmMemberManager.Services.csproj", "{27E6B9CB-CD3A-4F40-9F65-256AA9720E3F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{15137883-073F-475A-948B-A14AE6F46CA5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmMemberManager.Models.Tests", "tests\TmMemberManager.Models.Tests\TmMemberManager.Models.Tests.csproj", "{F8058BE7-1068-4371-AD18-8709D2F4AE63}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TmMemberManager.Services.Tests", "tests\TmMemberManager.Services.Tests\TmMemberManager.Services.Tests.csproj", "{F8058BE7-1068-4371-AD18-8709D2F4AE63}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
