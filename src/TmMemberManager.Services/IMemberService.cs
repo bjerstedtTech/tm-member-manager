@@ -5,6 +5,6 @@ namespace TmMemberManager.Services
 {
     public interface IMemberService
     {
-        Task<MemberModel> GetMemberByIdAsync(int id);
+        Task<MemberModel[]> GetMembers();
     }
 }

@@ -5,7 +5,7 @@ namespace TmMemberManager.Services.Models
     /// <summary>
     /// Roles that a member can perform at a meeting
     /// </summary>
-    public class Role
+    public class RoleModel
     {
         public string RoleCode { get; set; }
         public string RoleName { get; set; }

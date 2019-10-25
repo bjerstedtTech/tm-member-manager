@@ -5,7 +5,7 @@ namespace TmMemberManager.Services.Models
     /// <summary>
     /// Public information available for a member
     /// </summary>
-    public class Member
+    public class MemberModel
     {
         /// <summary>
         /// Official member number on Toastmaster's roster.
