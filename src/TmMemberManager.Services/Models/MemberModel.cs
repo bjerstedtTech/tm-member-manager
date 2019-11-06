@@ -8,6 +8,11 @@ namespace TmMemberManager.Services.Models
     public class MemberModel
     {
         /// <summary>
+        /// Member number assigned by local club
+        /// </summary>
+        public int ClubMemberNumber { get; set; }
+
+        /// <summary>
         /// Official member number on Toastmaster's roster.
         /// </summary>
         public int TmMemberNumber { get; set; }

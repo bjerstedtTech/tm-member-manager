@@ -5,6 +5,6 @@ namespace TmMemberManager.Services
 {
     public interface IMemberService
     {
-        Task<MemberModel[]> GetMembers();
+        Task<MemberModel> GetMember(int? tmMemberNumber = null, int? clubMemberNumber = null);
     }
 }
