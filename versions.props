@@ -1,13 +1,21 @@
 <Project>
+  <!-- Identifying -->
   <PropertyGroup>
     <TmMbrMgrVersion>$(TMMBRMGR_VERSION)</TmMbrMgrVersion>
     <TmMbrMgrVersionSuffix>$(TMMBRMGR_DASH_VERSION_SUFFIX)</TmMbrMgrVersionSuffix>
-
-    <!-- Test Packages -->
+  
+    <TargetAppFramework>netcoreapp3.0</TargetAppFramework>
+    <TargetLibraryFramework>netstandard2.1</TargetLibraryFramework>
+  
+    <EFCoreVersion>3.0.0</EFCoreVersion>
+    <EFInMemoryVersion>3.0.0</EFInMemoryVersion>
+  
+  <!-- Test Packages -->
     <TestSdkVersion>16.2.0</TestSdkVersion>
     <NunitVersion>3.12.0</NunitVersion>
     <NunitAdapterVersion>3.13.0</NunitAdapterVersion>
-
+    <NSubstituteVersion>4.2.1</NSubstituteVersion>
+  
 
     <!-- 
     <AspNetVersion>5.2.4</AspNetVersion>
@@ -22,7 +30,6 @@
     <DiagnosticSourceVersion>4.4.1</DiagnosticSourceVersion>
     <DriveInfoVersion>4.3.1</DriveInfoVersion>
     <EF6Version>6.2.0</EF6Version>
-    <EFCoreVersion>2.0.0</EFCoreVersion>
     <EFCoreTestVersion>2.1.2</EFCoreTestVersion>
     <ExtensionsVersion>2.0.0</ExtensionsVersion>
     <HostingExtensionVersion>2.1.0</HostingExtensionVersion>

@@ -6,7 +6,9 @@
     <TargetFramework>$(TargetLibraryFramework)</TargetFramework>
   </PropertyGroup>
 
-  <!-- <ItemGroup>
-    <ProjectReference Include="..\TmMemberManager.Data\TmMemberManager.Data.csproj" />
-  </ItemGroup> -->
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EFCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(EFInMemoryVersion)" />
+  </ItemGroup>
+
 </Project>

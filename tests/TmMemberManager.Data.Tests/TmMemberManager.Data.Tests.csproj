@@ -4,7 +4,6 @@
 
   <PropertyGroup>
     <TargetFramework>$(TargetAppFramework)</TargetFramework>
-
     <IsPackable>false</IsPackable>
   </PropertyGroup>
 
@@ -13,10 +12,14 @@
     <PackageReference Include="nunit" Version="$(NunitVersion)" />
     <PackageReference Include="NUnit3TestAdapter" Version="$(NunitAdapterVersion)" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="$(TestSdkVersion)" />
+  
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="$(EFCoreVersion)" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="$(EFInMemoryVersion)" />
   </ItemGroup>
 
+
   <ItemGroup>
-    <ProjectReference Include="..\..\src\TmMemberManager.Services\TmMemberManager.Services.csproj" />
+    <ProjectReference Include="..\..\src\TmMemberManager.Data\TmMemberManager.Data.csproj" />
   </ItemGroup>
 
 </Project>
