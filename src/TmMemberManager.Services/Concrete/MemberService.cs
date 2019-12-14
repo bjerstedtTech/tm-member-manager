@@ -18,7 +18,7 @@ namespace TmMemberManager.Services
             MemberModel member = null;
             if (tmMemberNumber.HasValue) {
                 member = await _dataService.GetMemberByTmMemberNumber(tmMemberNumber.Value);
-                if (member != null && clubMemberNumber.HasValue && member.ClubMemberNumber != clubMemberNumber.Value)
+                if (member != null && clubMemberNumber.HasValue && member.ClubMemberId != clubMemberNumber.Value)
                     member = null;
             } else if (clubMemberNumber.HasValue) {
                 member = await _dataService.GetMemberByClubMemberNumber(clubMemberNumber.Value);

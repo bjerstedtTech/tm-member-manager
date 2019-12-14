@@ -431,3 +431,7 @@ $RECYCLE.BIN/
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+
+# Files used as pattterns
+# These contain actual club data and need to be kept private
+**/Club-Roster*.csv

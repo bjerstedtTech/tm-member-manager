@@ -10,16 +10,29 @@ namespace TmMemberManager.Services.Models
         /// <summary>
         /// Member number assigned by local club
         /// </summary>
-        public int ClubMemberNumber { get; set; }
+        public int ClubMemberId { get; set; }
 
         /// <summary>
         /// Official member number on Toastmaster's roster.
         /// </summary>
-        public int TmMemberNumber { get; set; }
+        public int? TmMemberId { get; set; }
 
+        /// <summary>
+        /// Preferred name (Tony vs Anthony)
+        /// </summary>
+        public string? PreferredName { get; set; }
+
+        /// <summary>
+        /// First Name as it appears on roster
+        /// </summary>
         public string FirstName { get; set; }
+
+        /// <summary>
+        /// Last Name as it appears on roster
+        /// </summary>
         public string LastName { get; set; }
-        public string Email { get; set; }
+        public string PrimaryEmail { get; set; }
+
 
         /// <summary>
         /// Indicates that member is current member and listed on official roster.

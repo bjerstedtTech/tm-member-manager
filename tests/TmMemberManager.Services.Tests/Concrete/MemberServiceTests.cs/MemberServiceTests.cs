@@ -27,9 +27,9 @@ namespace TmMemberManager.Services.Concrete.Tests
         {
             var mockDataService = Substitute.For<IMemberDataService>();
             foreach (var member in members) {
-                mockDataService.GetMemberByTmMemberNumber(Arg.Is<int>(n => n == member.TmMemberNumber))
+                mockDataService.GetMemberByTmMemberNumber(Arg.Is<int>(n => n == member.TmMemberId))
                     .Returns(ci => Task.FromResult(member));
-                mockDataService.GetMemberByClubMemberNumber(Arg.Is<int>(n => n == member.ClubMemberNumber))
+                mockDataService.GetMemberByClubMemberNumber(Arg.Is<int>(n => n == member.ClubMemberId))
                     .Returns(ci => Task.FromResult(member));
             }
 
@@ -37,8 +37,8 @@ namespace TmMemberManager.Services.Concrete.Tests
         }
 
         private static MemberModel ModelOfHenry = new MemberModel {
-            TmMemberNumber = 99001,
-            ClubMemberNumber = 51,
+            TmMemberId = 99001,
+            ClubMemberId = 51,
             FirstName = "Henry"
         };
     }
