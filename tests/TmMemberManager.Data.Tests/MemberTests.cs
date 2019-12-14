@@ -17,17 +17,5 @@ namespace TmMemberManager.Data.Tests
             
         }
 
-        private MemberManagerContext SetupContext()
-        {
-            var options = new DbContextOptionsBuilder<MemberManagerContext>()
-                .UseInMemoryDatabase(databaseName:"TestMembers")
-                .Options;
-
-            var context = new MemberManagerContext(options);
-
-//            context.Members.Add()
-
-            return context;
-        }
     }
 }

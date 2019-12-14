@@ -6,7 +6,7 @@
     <TargetFramework>$(TargetLibraryFramework)</TargetFramework>
   </PropertyGroup>
 
-  <!-- <ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\TmMemberManager.Data\TmMemberManager.Data.csproj" />
-  </ItemGroup> -->
+  </ItemGroup>
 </Project>

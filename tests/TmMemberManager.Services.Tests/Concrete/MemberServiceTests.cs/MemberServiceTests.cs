@@ -1,45 +1,92 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using NSubstitute;
 using NUnit.Framework;
 using TmMemberManager.Data;
+using TmMemberManager.Data.Entities;
 using TmMemberManager.Services.Models;
 
 namespace TmMemberManager.Services.Concrete.Tests
 {
+    [TestFixture]
     public class MemberServiceTests
     {
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void AddMember_ShouldSucceed(int count)
+        {
+            var dataSvc = new MockMameberDataService();
+            var sut = new MemberService((IMemberDataService)dataSvc);
+
+            foreach (var m in _membersToAdd.Take(count)) sut.Add(m);
+
+            Assert.That(dataSvc.Members.Count(), Is.EqualTo(count));
+            Assert.That(
+                dataSvc.Members.Select(m => m.TmMemberNumber),
+                Is.EquivalentTo(_membersToAdd.Take(count).Select(m => m.TmMemberId))
+                );
+        }
+
         [Test]
-        [TestCase(null, null, ExpectedResult = null)]
-        [TestCase(99001, null, ExpectedResult = "Henry")]
-        [TestCase(99001, 51, ExpectedResult = "Henry")]
-        [TestCase(99001, 52, ExpectedResult = null)]
-        [TestCase(null, 52, ExpectedResult = null)]
-        [TestCase(99002, null, ExpectedResult = null)]
-        [TestCase(null, 51, ExpectedResult = "Henry")]
-        public async Task<string> GetMemberReturnsExectedResult_For(int? tmValue, int? clubValue)
+        public void AddDuplicateMemberWithId_ShouldThrow_DuplicateKeyException()
         {
-            var svc = SetupMemberService(ModelOfHenry);
-            var member = await svc.GetMember(tmMemberNumber: tmValue, clubMemberNumber: clubValue);
-            return member?.FirstName;
+            var dataSvc = new MockMameberDataService();
+            var sut = new MemberService((IMemberDataService)dataSvc);
+            
+            sut.Add(_membersToAdd[0]);
+            Assert.That(
+                () => sut.Add(_membersToAdd[0]),
+                Throws.TypeOf<DuplicateKeyException>()
+            );
         }
 
-        private MemberService SetupMemberService(params MemberModel[] members)
+        [Test]
+        public void AddDuplicateMemberWithNullId_ShouldSucceed()
         {
-            var mockDataService = Substitute.For<IMemberDataService>();
-            foreach (var member in members) {
-                mockDataService.GetMemberByTmMemberNumber(Arg.Is<int>(n => n == member.TmMemberId))
-                    .Returns(ci => Task.FromResult(member));
-                mockDataService.GetMemberByClubMemberNumber(Arg.Is<int>(n => n == member.ClubMemberId))
-                    .Returns(ci => Task.FromResult(member));
-            }
-
-            return new MemberService(mockDataService);
+            var dataSvc = new MockMameberDataService();
+            var sut = new MemberService((IMemberDataService)dataSvc);
+            
+            sut.Add(_janeway);
+            sut.Add(_janeway);
         }
 
-        private static MemberModel ModelOfHenry = new MemberModel {
-            TmMemberId = 99001,
-            ClubMemberId = 51,
-            FirstName = "Henry"
+        private static MemberModel[] _membersToAdd = new MemberModel[] {
+            NewMember(1, "James", "Kirk"),
+            NewMember(2, "Leonard", "McCoy"),
+            NewMember(3, "Montgomery", "Scott"),
+            NewMember(4, "Jean Luc", "Picard"),
+            NewMember(5, "Beverly", "Crusher"),
         };
+
+        private static MemberModel _janeway = NewMember(null, "Kathryn", "Janeway");
+
+        private static MemberModel NewMember(int? id, string fName, string lName)
+        {
+            return new MemberModel {
+                TmMemberId = id,
+                FirstName = fName,
+                LastName = lName,
+                PrimaryEmail = $"{fName}.{lName}@test.org"
+            };
+        }
+    }
+
+    public class MockMameberDataService : IMemberDataService
+    {
+        public readonly List<Member> Members = new List<Member>();
+        private int _nextId = 0;
+
+        void IMemberDataService.Add(Member member)
+        {
+            Members.Add(member);
+        }
+
+        IQueryable<Member> IMemberDataService.AllMembers()
+        {
+            return Members.AsQueryable();
+        }
     }
 }

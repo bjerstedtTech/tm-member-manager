@@ -17,6 +17,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\src\TmMemberManager.Services\TmMemberManager.Services.csproj" />
+    <ProjectReference Include="..\..\src\TmMemberManager.Data\TmMemberManager.Data.csproj" />
   </ItemGroup>
 
 </Project>

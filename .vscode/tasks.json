@@ -18,6 +18,13 @@
                 "publish"
             ],
             "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "test",
+            "dependsOn": [ "build" ],
+            "type": "process",
+            "command": "dotnet",
+            "args": [ "test" ]
         }
     ]
 }

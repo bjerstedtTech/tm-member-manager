@@ -1,5 +1,7 @@
+using System.Linq;
 using System.Threading.Tasks;
 using TmMemberManager.Data;
+using TmMemberManager.Data.Entities;
 using TmMemberManager.Services.Models;
 
 namespace TmMemberManager.Services
@@ -13,17 +15,22 @@ namespace TmMemberManager.Services
             _dataService = dataService;
         }
 
-        public async Task<MemberModel> GetMember(int? tmMemberNumber = null, int? clubMemberNumber = null)
+        public IMemberService Add(MemberModel model)
         {
-            MemberModel member = null;
-            if (tmMemberNumber.HasValue) {
-                member = await _dataService.GetMemberByTmMemberNumber(tmMemberNumber.Value);
-                if (member != null && clubMemberNumber.HasValue && member.ClubMemberId != clubMemberNumber.Value)
-                    member = null;
-            } else if (clubMemberNumber.HasValue) {
-                member = await _dataService.GetMemberByClubMemberNumber(clubMemberNumber.Value);
-            }
-            return member;
+            if (model.TmMemberId.HasValue
+                && _dataService.AllMembers().Any(m => m.TmMemberNumber == model.TmMemberId.Value))
+                throw new DuplicateKeyException("TmMemberNumber", "Member");
+
+            var entity = new Member {
+                TmMemberNumber = model.TmMemberId,
+                TmMemberName = $"{model.FirstName} {model.LastName}",
+                FirstName = model.FirstName,
+                LastName = model.LastName,
+                PrimaryEmail = model.PrimaryEmail
+            };
+
+            _dataService.Add(entity);
+            return this;
         }
     }
 }
